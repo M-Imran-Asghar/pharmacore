@@ -5,6 +5,7 @@ type BadgeVariant = "green" | "blue" | "amber" | "gray";
 interface BadgeProps {
   children: React.ReactNode;
   variant?: BadgeVariant;
+  className?: string;
 }
 
 const variants: Record<BadgeVariant, string> = {
@@ -14,12 +15,13 @@ const variants: Record<BadgeVariant, string> = {
   gray: "bg-slate-50 text-slate-700 ring-slate-600/20",
 };
 
-export default function Badge({ children, variant = "blue" }: BadgeProps) {
+export default function Badge({ children, variant = "blue", className }: BadgeProps) {
   return (
     <span
       className={clsx(
         "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset",
-        variants[variant]
+        variants[variant],
+        className
       )}
     >
       {children}
